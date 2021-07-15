@@ -1,16 +1,8 @@
 import Fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
-import quoteArray from './quotem.js';
 import path from 'path';
 import fastifyStatic from 'fastify-static';
-
-// import { readFile } from 'fs/promises';
-
-// const json = JSON.parse(
-//   await readFile(
-//     new URL('./quotes.json', import.meta.url)
-//   )
-// );
+import quoteArray from './quotem.js';
 
 const fastify = Fastify({ logger: true });
 
@@ -28,7 +20,7 @@ fastify.register(fastifyCors, {
 });
 
 fastify.get('/quote/random', async (request, reply) => {
-    const randomnum = Math.ceil(Math.random() * quoteArray.length);
+    const randomnum = Math.floor(Math.random() * quoteArray.length);
     const quote = { "quote": quoteArray[randomnum] };
     return quote;
 });
