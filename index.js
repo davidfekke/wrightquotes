@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
 import quoteArray from './quotem.js';
+import path from 'path';
+import fastifyStatic from 'fastify-static';
 
 // import { readFile } from 'fs/promises';
 
@@ -13,6 +15,13 @@ import quoteArray from './quotem.js';
 const fastify = Fastify({ logger: true });
 
 const port = process.env.PORT || '3000';
+
+const __dirname = process.cwd();
+
+fastify.register(fastifyStatic, {
+    root: path.join(__dirname, 'public'),
+    prefix: '/', // optional: default '/'
+});
 
 fastify.register(fastifyCors, { 
     // put your options here

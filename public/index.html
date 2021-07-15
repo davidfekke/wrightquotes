@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven Wright Quotes</title>
+</head>
+<body>
+    <h1>Steven Wright</h1>
+    <img src="220px-Steven_Wright_1994.jpeg" alt="Steven Wright" />
+    <div id="quotediv"></div>
+    <script type="module">
+        (async function() {
+            const quotediv = document.querySelector('#quotediv');
+            const result = await fetch('/quote/random');
+            const json = await result.json();
+            quotediv.innerHTML = json.quote;
+        })();
+    </script>
+</body>
+</html>
