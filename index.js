@@ -1,13 +1,14 @@
 import Fastify from 'fastify';
 import fastifyCors from 'fastify-cors';
+import quoteArray from './quotem.js';
 
-import { readFile } from 'fs/promises';
+// import { readFile } from 'fs/promises';
 
-const json = JSON.parse(
-  await readFile(
-    new URL('./quotes.json', import.meta.url)
-  )
-);
+// const json = JSON.parse(
+//   await readFile(
+//     new URL('./quotes.json', import.meta.url)
+//   )
+// );
 
 const fastify = Fastify({ logger: true });
 
@@ -18,14 +19,14 @@ fastify.register(fastifyCors, {
 });
 
 fastify.get('/quote/random', async (request, reply) => {
-    const randomnum = Math.ceil(Math.random() * 107);
-    const quote = { "quote": json[randomnum] };
+    const randomnum = Math.ceil(Math.random() * quoteArray.length);
+    const quote = { "quote": quoteArray[randomnum] };
     return quote;
 });
 
 fastify.get('/quote/:number', async (request, reply) => {
     const num = request.params.number || 0;
-    const quote = { "quote": json[num] };
+    const quote = { "quote": quoteArray[num] };
     return quote;
 });
 
