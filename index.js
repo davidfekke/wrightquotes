@@ -25,7 +25,7 @@ fastify.register(fastifySwagger, {
         description: 'These are the API calls for the Wright Quote service',
         version: '0.1.0'
       },
-      host: 'localhost:3000',
+      host: 'wrightquotes.herokuapp.com',
       schemes: ['http', 'https'],
       consumes: ['application/json'],
       produces: ['application/json'],
