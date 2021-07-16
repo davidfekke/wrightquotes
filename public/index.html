@@ -5,18 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steven Wright Quotes</title>
+    <style>
+        .quotesection {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .quotesection h1 {
+            text-align: center;
+        }
+        .quotesection img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #quotediv {
+            text-align: center;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+        #newquoteBtn {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+    </style>
 </head>
 <body>
-    <h1>Steven Wright</h1>
-    <img src="220px-Steven_Wright_1994.jpeg" alt="Steven Wright" />
-    <div id="quotediv"></div>
+    <section class="quotesection">
+        <h1>Steven Wright</h1>
+        <img src="220px-Steven_Wright_1994.jpeg" alt="Steven Wright" />
+        <div id="quotediv"></div>
+        <button id="newquoteBtn">Get New Quote</button>
+    </section>
+    
     <script type="module">
-        (async function() {
-            const quotediv = document.querySelector('#quotediv');
+        const btn = document.querySelector('#newquoteBtn');
+        btn.addEventListener('click', getNewQuote);
+        async function getNewQuote() {
             const result = await fetch('/quote/random');
             const json = await result.json();
             quotediv.innerHTML = json.quote;
-        })();
+        }
+        await getNewQuote();
+        
     </script>
 </body>
 </html>
