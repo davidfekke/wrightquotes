@@ -13,6 +13,7 @@
     <script type="module">
         (async function() {
             const quotediv = document.querySelector('#quotediv');
+            
             const result = await fetch('/quote/random');
             const json = await result.json();
             quotediv.innerHTML = json.quote;
