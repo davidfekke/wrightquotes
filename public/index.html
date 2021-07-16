@@ -37,16 +37,20 @@
         <button id="newquoteBtn">Get New Quote</button>
     </section>
     
-    <script type="module">
-        const btn = document.querySelector('#newquoteBtn');
-        btn.addEventListener('click', getNewQuote);
-        async function getNewQuote() {
+    <script>
+        const getQuote = async () => {
+            const quotediv = document.querySelector('#quotediv');
             const result = await fetch('/quote/random');
             const json = await result.json();
             quotediv.innerHTML = json.quote;
-        }
-        await getNewQuote();
-        
+        };
+
+        const btn = document.querySelector('#newquoteBtn');
+        btn.addEventListener('click', getQuote);
+
+        (async function(){
+            await getQuote();
+        })();
     </script>
 </body>
 </html>
